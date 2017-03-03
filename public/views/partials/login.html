@@ -1,0 +1,15 @@
+<div class="container">
+	<h1> Accounts </h1>
+	<div class="row">
+		<div ng-repeat="account in accounts | orderBy:'-id'">
+      <span>
+        <a href="#!/account/{{account._id}}">{{account.name}}</a>
+      </span>
+
+    </div>
+
+		<div class="col-sm-offset-5 col-sm-2"> 
+			<button ng-click="authenticate('facebook')">Add Account</button>
+		</div>
+	</div>
+</div>
