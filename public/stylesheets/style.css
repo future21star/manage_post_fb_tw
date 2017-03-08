@@ -53,3 +53,33 @@ a {
   height: 50px;
   font-size: 20px;
 }
+
+.tweet-directive {
+	margin: 10px 30px 10px 30px;
+}
+
+.tweet-block {
+	border-top: 1px solid black;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.parent-tweet {
+	border-bottom: 1px solid black;
+}
+
+.row {
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.new-text {
+	height: 35px;
+}
+
+.tweet-wrapper {
+	border:1px solid black;
+	padding: 10px 10px 10px 10px;
+}

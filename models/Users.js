@@ -5,10 +5,18 @@ var UserSchema = new mongoose.Schema({
 	email: String,
 	first: String,
 	last: String,
-	link: String, //image
 	name: String,
 	url: String,
-	//address
+	id_str: String,
+	screen_name: String,
+	description: String,
+	followers_count: Number,
+	friends_count: Number,
+	listed_count: Number,	
+	created_at: Date,
+	image: String,
+	address: String,
+	type: String
 });
 
 UserSchema.index({id: 1}, {unique: true});

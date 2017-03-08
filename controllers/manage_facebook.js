@@ -35,7 +35,7 @@ facebook_instance.createUser = function(access_token, user_id) {
 				return reject(err);
 			}
 			if (!user) {
-				var fields = ['id', 'email', 'first_name', 'last_name', 'link', 'name'];
+				var fields = ['id', 'email', 'first_name', 'last_name', 'link', 'name', 'location'];
 				graph.get(user_id + "?fields=", fields.join(','), function(err, user_info){
 					if (err) {
 						return reject(err);
@@ -45,8 +45,10 @@ facebook_instance.createUser = function(access_token, user_id) {
 						email: user_info.email,
 						first_name: user_info.first_name,
 						last_name: user_info.last_name,
-						link: user_info.link,
-						name: user_info.name			
+						image: user_info.link,
+						name: user_info.name,
+						address: user_info.location,
+						type: 'facebook'
 					});
 					user.save(function(err, user) {
 						if (err) {

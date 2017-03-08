@@ -1,10 +1,16 @@
-var app = angular.module('fb-tw-integration', ['ui.router', 'satellizer', 'btford.socket-io'])
+var app = angular.module('fb-tw-integration', ['ui.router', 'satellizer', 'btford.socket-io', 'ui.bootstrap'])
 .config([
   '$authProvider',
   function($authProvider) {
     $authProvider.facebook({
       clientId: '649277678594701',
+      url: '/auth/facebook',
       scope: ['manage_pages', 'publish_actions'],
+    });
+    $authProvider.twitter({
+      url: '/auth/twitter',
+      redirectUri: window.location.origin,
+      popupOptions: { width: 495, height: 645 }    
     });
   }
 ])
@@ -20,6 +26,9 @@ var app = angular.module('fb-tw-integration', ['ui.router', 'satellizer', 'btfor
       resolve: {
         accountsPromise: ['manage_fb_account', function(manage_fb_account) {
           return manage_fb_account.getAllAccounts();
+        }],
+        twitterAccountsPromise: ['manage_tw_account', function(manage_tw_account) {
+          return manage_tw_account.getAllAccounts();
         }]
       }
     })
@@ -42,7 +51,17 @@ var app = angular.module('fb-tw-integration', ['ui.router', 'satellizer', 'btfor
           return manage_fb_account.getFullPageInfo($stateParams.page_id);
         }]
       }
-    });    
+    })
+    .state('tweet_account', {
+      url: '/tweet_account/{account_id}',
+      templateUrl: 'views/partials/twitter_account.html',
+      controller: 'TwitterAccountCtrl',
+      resolve: {
+        account_info: ['$stateParams', 'manage_tw_account', function($stateParams, manage_tw_account) {
+          return manage_tw_account.getAccountInfo($stateParams.account_id);
+        }]
+      }
+    })    
     $urlRouterProvider.otherwise('login');
   }
 ]);
