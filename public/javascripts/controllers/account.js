@@ -7,7 +7,7 @@ angular.module('fb-tw-integration')
   function($scope, account_info, manage_fb_account, Socket) {
     Socket.on('page.updated', function(page_id) {
       if ($scope.full_page_info && $scope.full_page_info.id === page_id) {
-        manage_fb_account.getFullPageInfo($scope.full_page_info._id).then(function(data){
+        return manage_fb_account.getFullPageInfo($scope.full_page_info._id).then(function(data){
               $scope.full_page_info = data;
               $scope.posts = data.posts;
             });     

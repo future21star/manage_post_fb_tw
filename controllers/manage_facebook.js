@@ -445,7 +445,7 @@ facebook_instance.updateSpecificPage = function(page_id) {
 				})
 			} else {
 				facebook_instance.removeAllFromPage(page)
-				.then(function(res) {
+				.then(function(res) {	
 					page.populate("account", function(err, page) {
 						if (err) {
 							return reject(err);

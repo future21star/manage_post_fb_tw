@@ -86,24 +86,29 @@ router.get('/api/v1/full_page/:page_id', function(req, res, next) {
 		if (err) {
 			return next(err);
 		}
-		page.populate({
-			path: 'posts',
-    	model: 'Post',
-			populate: {
-				path: 'comments',
-				model: 'Comment',
+		if (page)
+		{
+			page.populate({
+				path: 'posts',
+	    	model: 'Post',
 				populate: {
-					path: 'mentions',
-					model: 'Mention'
+					path: 'comments',
+					model: 'Comment',
+					populate: {
+						path: 'mentions',
+						model: 'Mention'
+					}
 				}
-			}
-		},function(err, page) {
-				if (err) {
-					return next(err);
+			},function(err, page) {
+					if (err) {
+						return next(err);
+					}
+					return res.json(page);
 				}
-				return res.json(page);
-			}
-		);
+			);
+		} else {
+			return res.json({});
+		}
 	});
 });
 

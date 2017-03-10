@@ -3,7 +3,8 @@ var app = angular.module('fb-tw-integration', ['ui.router', 'satellizer', 'btfor
   '$authProvider',
   function($authProvider) {
     $authProvider.facebook({
-      clientId: '649277678594701',
+      // clientId: '649277678594701',
+      clientId: '393135537721682',
       url: '/auth/facebook',
       scope: ['manage_pages', 'publish_actions'],
     });
@@ -48,7 +49,7 @@ var app = angular.module('fb-tw-integration', ['ui.router', 'satellizer', 'btfor
       controller: 'PageCtrl',
       resolve: {
         full_page_info: ['$stateParams', 'manage_fb_account', function($stateParams, manage_fb_account) {
-          return manage_fb_account.getFullPageInfo($stateParams.page_id);
+          // return manage_fb_account.getFullPageInfo($stateParams.page_id);
         }]
       }
     })

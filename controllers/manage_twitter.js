@@ -172,7 +172,6 @@ twitter_instance.createAccountAndTweets = function(access_token, socketio) {
 								var user_info = tweet_info.user;
 								User.findOne({id: user_info.id}, function(err, user) {
 									if (!user) {
-										console.log("-------------no users ------------------", user_info.id);
 										var user = User({
 											id: user_info.id,
 											id_str: user_info.id_str,
@@ -191,11 +190,8 @@ twitter_instance.createAccountAndTweets = function(access_token, socketio) {
 										});
 										user.save(function(err, user) {
 											if (err) {
-												// console.log("----------------user save error---------------", err);
 											}
- 											// console.log("-------------saved user id----------------", user);
 											if (!err) {
-												console.log("-----------------success save user-----------------------", user._id);
 												Tweet.update({_id: tweet._id}, {user: user._id}, function(err, tweet) {															
 													if (err) {
 													}
@@ -204,7 +200,6 @@ twitter_instance.createAccountAndTweets = function(access_token, socketio) {
 										})																		
 									}
 									if (user) {
-										// console.log("-------------updated user id----------------", user._id);
 										Tweet.update({_id: tweet._id}, {user: user._id}, function(err, tweet) {															
 											if (err) {
 											}
