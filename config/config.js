@@ -3,7 +3,7 @@ module.exports = {
         appId: '649277678594701',
         appSecret: 'fcdb1c670a6f0b16885a426b1a59b654',
         redirect_uri: 'http://localhost:3000/auth',
-        callback_url_for_page: 'https://1de3d22e.ngrok.io/facebook/webhook_for_page',
+        callback_url_for_page: 'https://c19937b0.ngrok.io/facebook/webhook_for_page',
         verify_token: 'token'
     },
     twit: {

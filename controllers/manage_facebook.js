@@ -91,7 +91,7 @@ facebook_instance.createAccount = function(access_token) {
 						return reject(err);
 					}
 					// return facebook_instance.createPage(access_token, account);
-					graph.get("me/accounts", function(err, res){
+					graph.get(res.id + "/accounts", function(err, res){
 						if (err) {
 							return reject(err);
 						}
